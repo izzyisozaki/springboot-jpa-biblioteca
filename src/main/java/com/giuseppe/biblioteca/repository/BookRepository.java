@@ -13,7 +13,7 @@ public interface BookRepository extends JpaRepository<Book, Long> {
 
     List<Book> findByTitleContainingIgnoreCase(String title);
 
-    List<Book> findByPubblicationYearLessThan(int year);
+    List<Book> findByPublicationYearLessThan(int year);
 
     int countByAuthor(String author);
 
