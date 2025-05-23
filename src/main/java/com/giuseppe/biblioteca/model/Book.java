@@ -17,7 +17,7 @@ public class Book {
 
     public Book() {}
 
-    public Book(Long id, String title, String author, int pubblication_year, String genre) {
+    public Book(Long id, String title, String author, int publication_year, String genre) {
         this.id = id;
         this.title = title;
         this.author = author;
@@ -50,7 +50,7 @@ public class Book {
     }
 
     public int getPublication_year() {
-        return pubblication_year;
+        return publication_year;
     }
 
     public void setPublication_year(int publication_year) {
