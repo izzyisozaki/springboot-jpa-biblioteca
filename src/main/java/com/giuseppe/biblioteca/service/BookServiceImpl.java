@@ -22,7 +22,7 @@ public class BookServiceImpl implements IBookService {
                 bookEntity.getId(),
                 bookEntity.getTitle(),
                 bookEntity.getAuthor(),
-                bookEntity.getPublication_year(),
+                bookEntity.getAnno(),
                 bookEntity.getGenre()
         );
     }
@@ -39,10 +39,8 @@ public class BookServiceImpl implements IBookService {
 
     @Override
     public List<BookDTO> getAllBooks() {
-        return bookRepository.findAll()
-                .stream()
-                .map(this::toDTO).collect(Collectors
-                .toList());
+        return bookRepository.findAll().stream()
+                .map(this::toDTO).collect(Collectors.toList());
     }
 
     @Override
@@ -59,12 +57,11 @@ public class BookServiceImpl implements IBookService {
 
     @Override
     public BookDTO updateBook(Long id, BookDTO bookDTO) {
-        Book book = bookRepository.findById(id)
-                .orElseThrow();
+        Book book = bookRepository.findById(id).orElseThrow();
 
         book.setTitle(bookDTO.title());
         book.setAuthor(bookDTO.author());
-        book.setPublication_year(bookDTO.year());
+        book.setAnno(bookDTO.year());
         book.setGenre(bookDTO.genre());
 
         return toDTO(bookRepository.save(book));
@@ -77,80 +74,5 @@ public class BookServiceImpl implements IBookService {
             return true;
         }
         return false;
-    }
-
-    // Implementazione Service evoluta
-    @Override
-    public List<BookDTO> getBooksByAuthor(String author) {
-        return bookRepository.findByAuthor(author)
-                .stream()
-                .map(this::convertToDTO)
-                .toList();
-    }
-
-    @Override
-    public List<BookDTO> getBooksByGenre(String genre) {
-        return bookRepository.findByGenre(genre)
-                .stream()
-                .map(this::convertToDTO)
-                .toList();
-    }
-
-    @Override
-    public List<BookDTO> searchBooksByTitle(String title) {
-        return bookRepository.findByTitleContainingIgnoreCase(title)
-                .stream()
-                .map(this::convertToDTO)
-                .toList();
-    }
-
-    @Override
-    public List<BookDTO> getBooksPublishedBefore(int year) {
-        return bookRepository.findByPublicationYearLessThan(year)
-                .stream()
-                .map(this::convertToDTO)
-                .toList();
-    }
-
-    @Override
-    public int countBooksByAuthor(String author) {
-        return bookRepository.countByAuthor(author);
-    }
-
-    @Override
-    public List<BookDTO> getAllBooksSortedByYearDesc() {
-        return bookRepository.findAllByOrderByYearDesc()
-                .stream()
-                .map(this::convertToDTO)
-                .toList();
-    }
-
-    @Override
-    public List<BookDTO> searchBooksByTitleOrAuthor(String keyword) {
-        return bookRepository.findByTitleOrAuthor(keyword)
-                .stream()
-                .map(this::convertToDTO)
-                .toList();
-    }
-
-    // Metodi di conversione
-    private BookDTO convertToDTO(Book book) {
-        return new BookDTO(
-                book.getId(),
-                book.getTitle(),
-                book.getAuthor(),
-                book.getPublication_year(),
-                book.getGenre()
-        );
-    }
-
-    private Book convertToEntity(BookDTO bookDTO) {
-        return new Book(
-                bookDTO.id(),
-                bookDTO.title(),
-                bookDTO.author(),
-                bookDTO.year(),
-                bookDTO.genre()
-        );
     }
 }

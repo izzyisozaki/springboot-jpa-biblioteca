@@ -12,16 +12,16 @@ public class Book {
     private Long id;
     private String title;
     private String author;
-    private int publication_year;
+    private int anno;
     private String genre;
 
     public Book() {}
 
-    public Book(Long id, String title, String author, int publication_year, String genre) {
+    public Book(Long id, String title, String author, int anno, String genre) {
         this.id = id;
         this.title = title;
         this.author = author;
-        this.publication_year = publication_year;
+        this.anno = anno;
         this.genre = genre;
     }
 
@@ -49,12 +49,12 @@ public class Book {
         this.author = author;
     }
 
-    public int getPublication_year() {
-        return publication_year;
+    public int getAnno() {
+        return anno;
     }
 
-    public void setPublication_year(int publication_year) {
-        this.publication_year = publication_year;
+    public void setAnno(int anno) {
+        this.anno = anno;
     }
 
     public String getGenre() {
