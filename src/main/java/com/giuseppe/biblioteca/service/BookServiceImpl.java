@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 @Service
 public class BookServiceImpl implements IBookService {
 
-    private BookRepository bookRepository;
+    private final BookRepository bookRepository;
 
     public BookServiceImpl(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
@@ -74,5 +74,40 @@ public class BookServiceImpl implements IBookService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public List<BookDTO> getBooksByAuthor(String author) {
+        return List.of();
+    }
+
+    @Override
+    public List<BookDTO> getBooksByGenre(String genre) {
+        return List.of();
+    }
+
+    @Override
+    public List<BookDTO> searchBooksByTitle(String title) {
+        return List.of();
+    }
+
+    @Override
+    public List<BookDTO> getBooksPublishedBefore(int year) {
+        return List.of();
+    }
+
+    @Override
+    public int countBooksByAuthor(String author) {
+        return 0;
+    }
+
+    @Override
+    public List<BookDTO> getAllBooksSortedByYearDesc() {
+        return List.of();
+    }
+
+    @Override
+    public List<BookDTO> searchBooksByTitleOrAuthor(String keyword) {
+        return List.of();
     }
 }
